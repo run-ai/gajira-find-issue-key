@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const Jira = require('./common/net/Jira')
 
-const issueIdRegEx = /([a-zA-Z0-9]+-[0-9]+)/g
+const issueIdRegEx = /([A-Z0-9]+-[0-9]+)/g
 
 const eventTemplates = {
   branch: '{{event.ref}}',

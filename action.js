@@ -29,14 +29,20 @@ module.exports = class {
     }
 
     if (this.argv.from) {
-      const template = eventTemplates[this.argv.from]
+      // ignoring input - just run on both branch and commit (YG)
+      // const template = eventTemplates[this.argv.from]
 
-      if (template) {
-        const searchStr = this.preprocessString(template)
-        const foundIssue = await this.findIssueKeyIn(searchStr)
+      const template1 = eventTemplates["branch"]
+      const searchStr = this.preprocessString(template1)
+      const foundIssue = await this.findIssueKeyIn(searchStr)
+      if (foundIssue) return foundIssue
 
-        if (foundIssue) return foundIssue
-      }
+      const template2 = eventTemplates["commits"]
+      const searchStr = this.preprocessString(template2)
+      const foundIssue = await this.findIssueKeyIn(searchStr)
+      if (foundIssue) return foundIssue
+
+
     }
   }
 

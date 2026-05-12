@@ -38,9 +38,9 @@ module.exports = class {
       if (foundIssue) return foundIssue
 
       const template2 = eventTemplates["commits"]
-      const searchStr = this.preprocessString(template2)
-      const foundIssue = await this.findIssueKeyIn(searchStr)
-      if (foundIssue) return foundIssue
+      const searchStr2 = this.preprocessString(template2)
+      const foundIssue2 = await this.findIssueKeyIn(searchStr2)
+      if (foundIssue2) return foundIssue2
 
 
     }

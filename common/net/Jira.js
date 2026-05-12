@@ -1,7 +1,6 @@
 const { get } = require('lodash')
 
 const serviceName = 'jira'
-const { format } = require('url')
 const client = require('./client')(serviceName)
 
 class Jira {
@@ -59,11 +58,13 @@ class Jira {
   async fetch (apiMethodName,
     { host, pathname, query },
     { method, body, headers = {} } = {}) {
-    const url = format({
-      host: host || this.baseUrl,
-      pathname,
-      query,
-    })
+    const urlObj = new URL(pathname, host || this.baseUrl)
+    if (query) {
+      for (const [key, value] of Object.entries(query)) {
+        if (value) urlObj.searchParams.set(key, value)
+      }
+    }
+    const url = urlObj.toString()
 
     if (!method) {
       method = 'GET'
